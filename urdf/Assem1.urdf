@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot name="Assem1">
+
+  <!-- Dummy Root Link to Fix KDL Inertia Issue -->
+  <link name="dummy_link" />
+
+  <!-- Fixed Joint to Attach Dummy Link to Base Link -->
+  <joint name="fixed_base" type="fixed">
+    <parent link="dummy_link" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.00056481 0.00056483 0.042565" rpy="0 0 0" />
+      <mass value="0.20107" />
+      <inertia ixx="0.00020365" ixy="-2.8167E-06" ixz="-1.6706E-06"
+               iyy="0.00020365" iyz="1.6706E-06" izz="0.00033331" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///home/george/ros2_ws/src/urdf_4/meshes/visual/base_link.STL"/>
+      </geometry>
+      <material name="solid_slate_gray">
+        <color rgba="0.47 0.53 0.60 1"/>  <!-- Darker Slate Gray -->
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///home/george/ros2_ws/src/urdf_4/meshes/visual/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Link_1">
+    <inertial>
+      <origin xyz="-0.00017169 -0.00017291 0.11465" rpy="0 0 0" />
+      <mass value="0.17103" />
+      <inertia ixx="0.00019137" ixy="2.9717E-05" ixz="-7.4593E-06"
+               iyy="0.00017798" iyz="-6.1658E-06" izz="0.00012482" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///home/george/ros2_ws/src/urdf_4/meshes/visual/Link_1.STL" />
+      </geometry>
+      <material name="solid_slate_gray">
+        <color rgba="0.47 0.53 0.60 1"/>  <!-- Darker Slate Gray -->
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///home/george/ros2_ws/src/urdf_4/meshes/visual/Link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Joint_1" type="revolute">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="Link_1" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-1.571" upper="1.571" effort="300" velocity="3" />
+  </joint>
+
+  <link name="Link_2">
+    <inertial>
+      <origin xyz="-0.063683 -1.7447E-05 -0.0035985" rpy="0 0 0" />
+      <mass value="0.041761" />
+      <inertia ixx="6.5036E-06" ixy="-7.6644E-08" ixz="-3.3324E-06"
+               iyy="7.8543E-05" iyz="-2.4007E-09" izz="8.0766E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///home/george/ros2_ws/src/urdf_4/meshes/visual/Link_2.STL" />
+      </geometry>
+      <material name="solid_slate_gray">
+        <color rgba="0.47 0.53 0.60 1"/>  <!-- Darker Slate Gray -->
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///home/george/ros2_ws/src/urdf_4/meshes/visual/Link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Joint_2" type="revolute">
+    <origin xyz="0 0 0.1331" rpy="-1.5782 0.16406 -0.94113" />
+    <parent link="Link_1" />
+    <child link="Link_2" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-1.571" upper="1.571" effort="300" velocity="3" />
+  </joint>
+
+</robot>
+
